@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Flipping game</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+		<script src="flip.js"></script>
+		<link rel="stylesheet" href="demo.css"></link>
+	</head>
+	<body>
+
+<div class="header">
+	<h1 class="shadowly">Random Flipper</h1>
+</div>
+
+<div id="instruct">
+	Click a circle and wait for your point.
+</div>
+
+<div class="triHolder">
+<div id="yourPoint"></div>
+<div class="circleTriHold">
+	<div class="eachRow">
+		<div class="circle even flipcard h" data-value="1" onclick="clicker(this)"> 
+			<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div>
+		</div>
+		<div class="circle odd flipcard h" data-value="2" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div></div>
+		<div class="circle even flipcard h" data-value="3" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div></div>
+		<div class="circle odd flipcard h" data-value="4" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div>
+		</div>
+		<div class="circle even flipcard h" data-value="5" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div>
+		</div>
+	</div>
+	<br />
+	<div class="eachRow" style="margin-top: -18px;margin-left: 51px;">
+		<div class="circle odd flipcard h" data-value="6" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div></div>
+		<div class="circle even flipcard h" data-value="7" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div></div>
+		<div class="circle odd flipcard h" data-value="8" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div></div>
+		<div class="circle even flipcard h" data-value="9" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div></div>
+	</div>
+	<br />
+	<div class="eachRow" style="margin-top: -18px;margin-left: 102px;">
+		<div class="circle odd flipcard h" data-value="10" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div></div>
+		<div class="circle even flipcard h" data-value="11" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div></div>
+		<div class="circle odd flipcard h" data-value="12" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div></div>
+	</div>
+	<br />
+	<div class="eachRow" style="margin-top: -18px;margin-left: 153px;">
+		<div class="circle even flipcard h" data-value="13" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div></div>
+		<div class="circle odd flipcard h" data-value="14" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div></div>
+	</div>
+	<br />
+	<div class="eachRow" style="margin-top: -18px;margin-left: 203px;">
+		<div class="circle even flipcard h" data-value="15" onclick="clicker(this)">
+		<div class="front circle">
+				
+			</div>
+			<div class="back circle">
+				
+			</div></div>
+	</div>
+	
+</div>
+<div style="text-align:center;margin-top:15px;height:50px;">
+	<button onclick="resetTriangle()" id="resetButton" style="display:none;">Replay</button>
+</div>
+</div>
+
+<div class="footer">
+	<marquee><h2 class="shadowly">Just playing around!!!</h2></marquee>
+</div>
+
+		<script>
+			function resetTriangle() {
+				$('.iFlipped').find('.back').removeAttr('style');
+				$('.eachRow').children('div').removeClass('flip iFlipped iFlippedOther');
+				$("#resetButton").hide();
+				$("#yourPoint").html("");
+			}
+
+
+			function clicker(div) {
+				if ($(div).hasClass("iFlipped") == true || $(div).hasClass("iFlippedOther") == true) {
+					alert("already flipped");
+				} else {
+					$(div).addClass("iFlipped");
+
+					//var val = $(div).attr("data-value");
+					var val = Math.floor(Math.random() * 15) + 1;
+					$(div).children(".back").html(val);
+					$(div).toggleClass("flip");
+
+					$(div).children(".back").css("background", "navy");
+					$(div).children(".back").css("border", "2px solid navy");
+					var parent = $(div).parents(".circleTriHold").eq(0);
+					$(parent).find(".eachRow").find(".flipcard").addClass("iFlippedOther");
+					var flipper = $('.iFlippedOther').not('.iFlipped');
+					$(flipper).each(function (i, obj) {
+						//test
+						//var val = $(obj).attr("data-value");
+						var val = Math.floor(Math.random() * 15) + 1;
+						$(obj).children(".back").html(val);
+					});
+					var totalRow = $(parent).find(".eachRow").length;
+
+					for (var i = 0; i <= totalRow; i++) {
+							(function (i) {
+								setTimeout(function () {
+									if (i < totalRow) { $(parent).find(".eachRow").eq(i).find(".flipcard").not(".iFlipped").toggleClass("flip"); }
+									if (i == (totalRow - 1)) {
+										var val = $(div).children(".back").html();
+										var points = val == 1 ? "point" : "points";
+										$("#yourPoint").html("You have earned " + val + " " + points + "!!!");
+										$("#resetButton").show();
+									}
+								}, 1500 * (i + 1));
+							})(i);
+					}
+				}
+
+				}
+			
+		</script>
+	</body>
+</html>

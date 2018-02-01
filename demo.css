@@ -1,0 +1,178 @@
+*
+{
+	margin:0;	
+}
+
+.header
+{
+	text-align:center;	
+	background-color:lightblue;
+	padding: 10px 0;
+    border: 1px groove grey;
+    box-shadow: 1px 2px 5px grey;
+}
+
+.footer
+{
+	text-align:right;	
+	background-color:lightblue;
+	padding: 7px 0;
+    border: 1px groove grey;
+    box-shadow: 1px 2px 5px grey;
+}
+
+#yourPoint
+{
+	font-size:2.2em;
+	font-weight:600;
+	color: deeppink;
+	height:35px;
+    text-align: center;
+    margin-bottom: 10px;
+    animation-name: example;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+@keyframes example {
+    from { color: deeppink;}
+    to {color: lightblue;}
+}
+
+.circle{
+	width:100px;
+	height:100px;
+    border-radius: 50%;
+    cursor:pointer;
+}
+
+.eachRow
+{
+	clear:both;	
+	display:inline-flex;
+}
+
+#resetButton
+{
+	font-size: 1.7em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: lightblue;
+    border: 1px solid grey;
+    border-radius: 3px;
+    color: brown;	
+}
+
+#resetButton:hover
+{
+	box-shadow: 1px 3px 8px brown;	
+}
+
+.triHolder
+{
+	margin: 20px auto;
+    width: intrinsic;           /* Safari/WebKit uses a non-standard name */
+	width: -moz-max-content;    /* Firefox/Gecko */
+	width: -webkit-max-content;
+}
+
+.circleTriHold
+{
+	display: inline-block;
+}
+
+.even{
+	/*background:red;
+	border:2px solid red;*/
+}
+.odd{
+	/*background:red;
+	border:2px solid red;*/
+}
+
+
+
+.flipcard {
+  /*position: relative;
+  width: 220px;
+  height: 160px;*/
+  perspective: 500px;
+  text-align:center;
+}
+/*.flipcard.v:hover .front, .*/flipcard.v.flip .front{
+  transform: rotateX(180deg);
+}
+/*.flipcard.v:hover .back,*/ .flipcard.v.flip .back{
+  transform: rotateX(0deg);
+}
+.flipcard.v .back{
+  transform: rotateX(-180deg);
+}
+/*.flipcard.h:hover .front,*/ .flipcard.h.flip .front{
+  transform: rotateY(180deg);
+}
+/*.flipcard.h:hover .back,*/ .flipcard.h.flip .back{
+  transform: rotateY(0deg);
+}
+.flipcard.h .back{
+  transform: rotateY(-180deg);
+}
+.flipcard .front, .flipcard .back
+{
+  position:absolute;
+  /*width: 100%;
+  height: 100%;*/
+  box-sizing: border-box;
+  transition: all 0.5s ease-in;
+  color: white;
+  /*background-color: #000;*/
+  padding: 10px;
+  backface-visibility: hidden;
+}
+
+.front
+{
+	background:red;
+	border:2px solid red;
+}
+
+/*.front:hover
+{
+	background: cadetblue;
+    border: cadetblue;
+}*/
+
+div:not(.iFlippedOther) > .front:hover {
+    background: cadetblue;
+    border: cadetblue;
+}
+
+div:not(.iFlippedOther) > .front:hover:after {
+    content:"pick me!";
+}
+
+/*.front:hover:after
+{
+	content:"pick me!";	
+}*/
+
+.back
+{
+	background:green;
+	border:2px solid green;
+}
+
+#instruct
+{
+	margin-top:10px;
+	text-align:center;
+	font-size:2em;
+	font-weight:600;	
+}
+
+.shadowly
+{
+	text-shadow: 1px 1.3px grey;	
+}
