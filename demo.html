@@ -19,7 +19,8 @@
 
 <div class="scoreHolder">
 <span class="what">Your score: </span><span id="yourScore" class="what">0</span><br />
-<span class="what">Over: </span><span id="total" class="what">0</span>
+<span class="what">Over: </span><span id="total" class="what">0</span><br />
+<span class="what">Percentage: </span><span id="percent" class="what">0</span>
 </div>
 
 <div class="triHolder">
@@ -166,8 +167,10 @@
 				var scorer = parseInt(score);
 				current += scorer;
 				total += 15;
+				var percent = ((current / total) * 100).toFixed(2);
 				$("#yourScore").html(current);
 				$("#total").html(total);
+				$("#percent").html(percent + "%");
 			}
 
 			function resetTriangle() {
@@ -182,6 +185,7 @@
 				resetTriangle();
 				$("#yourScore").html("0");
 				$("#total").html("0");
+				$("#percent").html("0");
 			}
 
 			function shuffle(a) {
