@@ -17,6 +17,11 @@
 	Click a circle and wait for your point.
 </div>
 
+<div class="scoreHolder">
+<span class="what">Your score: </span><span id="yourScore" class="what">0</span><br />
+<span class="what">Over: </span><span id="total" class="what">0</span>
+</div>
+
 <div class="triHolder">
 <div id="yourPoint"></div>
 <div class="circleTriHold">
@@ -145,7 +150,8 @@
 	
 </div>
 <div style="text-align:center;margin-top:15px;height:50px;">
-	<button onclick="resetTriangle()" id="resetButton" style="display:none;">Replay</button>
+	<button onclick="resetTriangle()" class="resetButton" style="display:none;">Replay</button>
+	<button onclick="resetAll()" class="resetButton" style="display:none;color:red">Restart</button>
 </div>
 </div>
 
@@ -154,12 +160,28 @@
 </div>
 
 		<script>
+			function updateScore(score) {
+				var current = parseInt($("#yourScore").html());
+				var total = parseInt($("#total").html());
+				var scorer = parseInt(score);
+				current += scorer;
+				total += 15;
+				$("#yourScore").html(current);
+				$("#total").html(total);
+			}
+
 			function resetTriangle() {
 				$('.iFlipped').find('.back').removeAttr('style');
 				$('.eachRow').children('div').removeClass('flip iFlipped iFlippedOther');
-				$("#resetButton").hide();
+				$(".resetButton").hide();
 				$("#yourPoint").html("");
 				numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+			}
+
+			function resetAll() {
+				resetTriangle();
+				$("#yourScore").html("0");
+				$("#total").html("0");
 			}
 
 			function shuffle(a) {
@@ -206,7 +228,8 @@
 										var val = $(div).children(".back").html();
 										var points = val == 1 ? "point" : "points";
 										$("#yourPoint").html("You have earned " + val + " " + points + "!!!");
-										$("#resetButton").show();
+										$(".resetButton").show();
+										updateScore(val);
 									}
 								}, 1500 * (i + 1));
 							})(i);
