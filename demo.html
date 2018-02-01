@@ -159,9 +159,18 @@
 				$('.eachRow').children('div').removeClass('flip iFlipped iFlippedOther');
 				$("#resetButton").hide();
 				$("#yourPoint").html("");
+				numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 			}
 
+			function shuffle(a) {
+				for (var i = a.length - 1; i > 0; i--) {
+					var j = Math.floor(Math.random() * (i + 1));
+					[a[i], a[j]] = [a[j], a[i]];
+				}
+			return a;
+			}
 
+			var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 			function clicker(div) {
 				if ($(div).hasClass("iFlipped") == true || $(div).hasClass("iFlippedOther") == true) {
 					alert("already flipped");
@@ -169,7 +178,10 @@
 					$(div).addClass("iFlipped");
 
 					//var val = $(div).attr("data-value");
-					var val = Math.floor(Math.random() * 15) + 1;
+					numbers = shuffle(numbers);
+					var val = numbers[0];
+					numbers.shift();
+
 					$(div).children(".back").html(val);
 					$(div).toggleClass("flip");
 
@@ -181,7 +193,7 @@
 					$(flipper).each(function (i, obj) {
 						//test
 						//var val = $(obj).attr("data-value");
-						var val = Math.floor(Math.random() * 15) + 1;
+						var val = numbers[i];
 						$(obj).children(".back").html(val);
 					});
 					var totalRow = $(parent).find(".eachRow").length;
