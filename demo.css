@@ -53,7 +53,7 @@
 	display:inline-flex;
 }
 
-#resetButton
+.resetButton
 {
 	font-size: 1.7em;
     text-transform: uppercase;
@@ -63,9 +63,10 @@
     border: 1px solid grey;
     border-radius: 3px;
     color: brown;	
+    margin-left:5px;
 }
 
-#resetButton:hover
+.resetButton:hover
 {
 	box-shadow: 1px 3px 8px brown;	
 }
@@ -175,4 +176,20 @@ div:not(.iFlippedOther) > .front:hover:after {
 .shadowly
 {
 	text-shadow: 1px 1.3px grey;	
+}
+
+.what
+{
+	font-size:1.5em;
+	font-weight:500;	
+}
+
+#yourScore
+{
+	color:blue;	
+}
+
+#total
+{
+	color:lightblue;	
 }
